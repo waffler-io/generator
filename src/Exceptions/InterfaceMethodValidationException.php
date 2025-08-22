@@ -11,7 +11,9 @@
 
 namespace Waffler\Component\Generator\Exceptions;
 
-class InterfaceMethodValidationException extends \RuntimeException
+use Waffler\Contracts\Generator\Exceptions\GeneratorExceptionInterface;
+
+class InterfaceMethodValidationException extends \RuntimeException implements GeneratorExceptionInterface
 {
     public const METHOD_NOT_ALLOWED = 0;
     public const STATIC_METHODS_ARE_NOT_ALLOWED = 1;
@@ -39,6 +41,10 @@ class InterfaceMethodValidationException extends \RuntimeException
         self::INVALID_METHOD_RETURN_TYPE => 'The return type is not allowed. Allowed types are: %s.',
     ];
 
+    /**
+     * @param int               $code
+     * @param array<string|int> $messageReplacements
+     */
     public function __construct(int $code, array $messageReplacements = [])
     {
         parent::__construct(

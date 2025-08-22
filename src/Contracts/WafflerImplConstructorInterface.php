@@ -12,8 +12,18 @@
 namespace Waffler\Component\Generator\Contracts;
 
 use Waffler\Contracts\Client\FactoryInterface;
+use Waffler\Contracts\HttpClient\ClientInterface;
 
 interface WafflerImplConstructorInterface
 {
-    public function __construct(array $options, FactoryInterface $factory);
+    /**
+     * @param array<string, mixed> $options See {@see RequestOptions} for all available options.
+     * @param FactoryInterface     $factory
+     * @param ClientInterface      $client
+     */
+    public function __construct(
+        array $options,
+        FactoryInterface $factory,
+        ClientInterface $client,
+    );
 }
